@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: always_declare_return_types, cascade_invocations, prefer_single_quotes, avoid_single_cascade_in_expression_statements
 
 part of 'news.modal.dart';
 
