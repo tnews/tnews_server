@@ -4,12 +4,12 @@ import 'package:io/ansi.dart';
 
 /// Prints the contents of a [LogRecord] with pretty colors.
 void prettyLog(LogRecord record) {
-  AnsiCode code = chooseLogColor(record.level);
+  var code = chooseLogColor(record.level);
 
   if (record.error == null) print(code.wrap(record.toString()));
 
   if (record.error != null) {
-    Object err = record.error;
+    var err = record.error;
     if (err is AngelHttpException && err.statusCode != 500) return;
     print(code.wrap(record.toString() + '\n'));
     print(code.wrap(err.toString()));

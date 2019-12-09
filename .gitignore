@@ -4,7 +4,6 @@
 
 # source_gen
 .dart_tool
-
 # Files and directories created by pub
 .buildlog
 .packages
@@ -53,8 +52,12 @@ pubspec.lock
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
+<<<<<<< HEAD
+
+=======
 **.idea
 **.vscode
+>>>>>>> 0e8c7ad7b5fe1d1108ebec6af111954d8be644ba
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 

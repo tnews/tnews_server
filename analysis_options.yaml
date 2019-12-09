@@ -10,7 +10,7 @@
 linter:
   rules:
     - prefer_single_quotes
-    - avoid_as
+    # - avoid_as
     - camel_case_types
     - unnecessary_new
     - empty_statements
@@ -36,8 +36,6 @@ linter:
     - only_throw_errors
 
 analyzer:
-  strong-mode:
-    implicit-casts: false
   errors:
     camel_case_types: error
     unnecessary_new: error

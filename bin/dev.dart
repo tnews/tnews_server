@@ -10,22 +10,19 @@ void main() async {
   // Watch the config/ and web/ directories for changes, and hot-reload the server.
   hierarchicalLoggingEnabled = true;
 
-  HotReloader hot = HotReloader(
-    () async {
-      Logger logger = Logger.detached('tnews_server')
-        ..level = Level.ALL
-        ..onRecord.listen(prettyLog);
-      Angel app = Angel(logger: logger, reflector: MirrorsReflector());
-      await app.configure(configureServer);
-      return app;
-    },
-    <Directory>[
-      Directory('config'),
-      Directory('lib'),
-    ],
-  );
+  var hot = HotReloader(() async {
+    var logger = Logger.detached('tnews_server')
+      ..level = Level.ALL
+      ..onRecord.listen(prettyLog);
+    var app = Angel(logger: logger, reflector: MirrorsReflector());
+    await app.configure(configureServer);
+    return app;
+  }, [
+    Directory('config'),
+    Directory('lib'),
+  ]);
 
-  HttpServer server = await hot.startServer('127.0.0.1', 3000);
-
-  print('tnews_server server listening at http://${server.address.address}:${server.port}');
+  var server = await hot.startServer('127.0.0.1', 3000);
+  print(
+      'tnews_server server listening at http://${server.address.address}:${server.port}');
 }
