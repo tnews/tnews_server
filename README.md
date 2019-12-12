@@ -1,4 +1,6 @@
 ## TNews API
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftnews%2Ftnews_server.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftnews%2Ftnews_server?ref=badge_shield)
+
 API for tnews.
 
 ### Quick start
@@ -38,3 +40,7 @@ dart bin/prod.dart
 [![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/5)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/5)
 [![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/6)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/6)
 [![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/7)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/7)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftnews%2Ftnews_server.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftnews%2Ftnews_server?ref=badge_large)
