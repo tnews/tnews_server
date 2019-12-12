@@ -1,60 +1,40 @@
-[![The Angel Framework](https://angel-dart.github.io/assets/images/logo.png)](https://angel-dart.dev)
+## TNews API
+API for tnews.
 
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/angel_dart/discussion)
-[![Pub](https://img.shields.io/pub/v/angel_framework.svg)](https://pub.dartlang.org/packages/angel_framework)
-[![Build status](https://travis-ci.org/angel-dart/framework.svg?branch=master)](https://travis-ci.org/angel-dart/framework)
-![License](https://img.shields.io/github/license/angel-dart/framework.svg)
+### Quick start
 
-**A polished, production-ready backend framework in Dart.**
-
-*Note: This repo is an application boilerplate ,and not the underlying framework library.*
-
------
-## About
-Angel is a full-stack Web framework in Dart. It aims to
-streamline development by providing many common features
-out-of-the-box in a consistent manner.
-
-With features like the following, Angel is the all-in-one framework you should choose to build your next project:
-* [GraphQL Support](https://github.com/angel-dart/graphql)
-* [PostgreSQL ORM](https://github.com/angel-dart/orm)
-* [Dependency Injection](https://docs.angel-dart.dev/guides/dependency-injection)
-* And [much more](https://github.com/angel-dart)...
-
-## Installation & Setup
-
-Once you have [Dart](https://www.dartlang.org/) installed, bootstrapping a project is as simple as running a few shell commands:
-
-Install the [Angel CLI](https://github.com/angel-dart/cli):
+- Clone projects:
 
 ```bash
-pub global activate angel_cli
+git clone https://github.com/tnews/tnews_server.git
 ```
 
-Bootstrap a project:
+- Get packages from **pub** for Flutter app:
 
 ```bash
-angel init hello
+dart pub get
 ```
 
-You can even have your server run and be *hot-reloaded* on file changes:
+- Run project with **debug** mode:
 
 ```bash
 dart --observe bin/dev.dart
 ```
 
-Next, check out the [detailed documentation](https://docs.angel-dart.dev/v/2.x) to learn to flesh out your project.
+- Run project with **release** mode
 
-## Examples and Documentation
-Visit the [documentation](https://docs.angel-dart.dev/v/2.x)
-for dozens of guides and resources, including video tutorials,
-to get up and running as quickly as possible with Angel.
+```bash
+dart bin/prod.dart
+```
 
-Examples and complete projects can be found
-[here](https://github.com/angel-dart/examples-v2).
+### API
 
-
-You can also view the [API Documentation](http://www.dartdocs.org/documentation/angel_framework/latest).
-
-There is also an [Awesome Angel :fire:](https://github.com/angel-dart/awesome-angel) list.
-
+### Contributors
+[![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/0)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/0)
+[![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/1)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/1)
+[![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/2)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/2)
+[![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/3)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/3)
+[![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/4)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/4)
+[![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/5)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/5)
+[![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/6)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/6)
+[![](https://sourcerer.io/fame/tvc12/tnews/tnews_server/images/7)](https://sourcerer.io/fame/tvc12/tnews/tnews_server/links/7)
