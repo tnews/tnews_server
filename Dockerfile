@@ -11,4 +11,4 @@ RUN pub get
 # Set environment, start server
 ENV ANGEL_ENV=production
 EXPOSE 3000
-CMD dart bin/prod.dart
+CMD dart bin/prod.dart --address=0.0.0.0 --port=$PORT
