@@ -19,16 +19,19 @@ Future<void> configureServer(Angel app) async {
 
 Future<PostgreSQLConnection> connectToPostgres(Map configuration) async {
   var postgresConfig = configuration['postgres'] as Map ?? {};
+  final port = int.tryParse(postgresConfig['port'] ?? '5432');
+  final useSSL = (postgresConfig['use_ssl'] as String)?.toLowerCase() == 'true';
   var connection = PostgreSQLConnection(
-      postgresConfig['host'] as String ?? 'localhost',
-      postgresConfig['port'] as int ?? 5432,
-      postgresConfig['database_name'] as String ??
-          Platform.environment['USER'] ??
-          Platform.environment['USERNAME'],
-      username: postgresConfig['username'] as String,
-      password: postgresConfig['password'] as String,
-      timeZone: postgresConfig['time_zone'] as String ?? 'UTC',
-      timeoutInSeconds: postgresConfig['timeout_in_seconds'] as int ?? 30,
-      useSSL: postgresConfig['use_ssl'] as bool ?? false);
+    postgresConfig['host'] as String ?? 'localhost',
+    port ?? 5432,
+    postgresConfig['database_name'] as String ??
+        Platform.environment['USER'] ??
+        Platform.environment['USERNAME'],
+    username: postgresConfig['username'] as String,
+    password: postgresConfig['password'] as String,
+    timeZone: postgresConfig['time_zone'] as String ?? 'UTC',
+    timeoutInSeconds: int.tryParse(postgresConfig['timeout_in_seconds'] ?? '30') ?? 30,
+    useSSL: useSSL,
+  );
   return connection;
 }

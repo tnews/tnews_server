@@ -1,9 +1,9 @@
 library tnews_server.src.config;
 
-import 'package:angel_configuration/angel_configuration.dart';
 import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_jael/angel_jael.dart';
 import 'package:file/file.dart';
+import 'package:tnews_server/src/config/configuaration.dart';
 import 'plugins/plugins.dart' as plugins;
 
 /// This is a perfect place to include configuration and load plug-ins.

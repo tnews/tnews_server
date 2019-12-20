@@ -1,3 +1,10 @@
 # Production-only server configuration
 debug: false
-jwt_secret: "isRZalXVrqztETCI8gZa2G4003VeyFQV"
+host: $HOST_TVC
+port: $PORT
+postgres:
+  database_name: $DATABASE_NAME
+  username: $USERNAME
+  password: $PASSWORD
+  port: $PORT_DATABASE
+  use_ssl: $USE_SSL

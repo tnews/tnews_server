@@ -1,9 +1,15 @@
 # Default server configuration.
-host: 127.0.0.1
-mongo_db: mongodb://localhost:27017/angel
+host: localhost
 port: 3000
+# postgres:
+#   database_name: tvc12_news
+#   username: admin
+#   password: admin
 postgres:
-  database_name: tvc12_news
-  username: admin
-  password: admin
+  host: $HOST_POSTGRES
+  database_name: $DATABASE_NAME
+  username: $USERNAME
+  password: $PASSWORD
+  port: $PORT_DATABASE
+  use_ssl: $USE_SSL
 jwt_secret: "iyXrOiTnHCWqAKUPsOvLxoWmrF6ShxB9"
