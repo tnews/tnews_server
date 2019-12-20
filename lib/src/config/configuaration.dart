@@ -64,15 +64,18 @@ Future<Map> loadStandaloneConfiguration(FileSystem fileSystem,
     String overrideEnvironmentName,
     String envPath,
     void onWarning(String message)}) async {
+  envPath ??= '.env';
+
   Directory sourceDirectory = fileSystem.directory(directoryPath);
   var env = dotenv.env;
-  var envFile = sourceDirectory.childFile(envPath ?? '.env');
+  var envFile = sourceDirectory.childFile(envPath);
 
   if (await envFile.exists()) {
     dotenv.load(envFile.absolute.uri.toFilePath());
   }
 
   String environmentName = env['ANGEL_ENV'] ?? 'development';
+  loadEnv('$envPath', null);
 
   if (overrideEnvironmentName != null) {
     environmentName = overrideEnvironmentName;
@@ -133,11 +136,11 @@ AngelConfigurer configuration(FileSystem fileSystem,
 void loadEnv(String path, Angel app) {
   final file = io.File(path);
   if (file.existsSync()) {
-    app.logger?.info('Load $path');
+    app?.logger?.info('Load $path');
     try {
       dotenv.load(file.absolute.uri.toFilePath());
     } catch (_) {
-      app.logger?.warning(
+      app?.logger?.warning(
           'WARNING: Found an environment configuration at ${file.absolute.path}, but it was invalidly formatted. Refusing to load it.');
     }
   }

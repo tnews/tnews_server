@@ -1,5 +1,5 @@
+import 'package:tnews_server/src/config/configuaration.dart';
 import 'package:tnews_server/src/config/plugins/orm.dart';
-import 'package:angel_configuration/angel_configuration.dart';
 import 'package:angel_migration_runner/angel_migration_runner.dart';
 import 'package:angel_migration_runner/postgres.dart';
 import 'package:file/local.dart';
