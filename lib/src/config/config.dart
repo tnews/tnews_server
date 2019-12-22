@@ -2,8 +2,13 @@ library tnews_server.src.config;
 
 import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_jael/angel_jael.dart';
+import 'package:angel_orm/angel_orm.dart';
 import 'package:file/file.dart';
 import 'package:tnews_server/src/config/configuaration.dart';
+import 'package:tnews_server/src/models/news.modal.dart';
+import 'package:tnews_server/src/routes/controllers/news_controller.dart';
+import 'package:tnews_server/src/services/news_service.dart';
+
 import 'plugins/plugins.dart' as plugins;
 
 /// This is a perfect place to include configuration and load plug-ins.
@@ -28,5 +33,9 @@ AngelConfigurer configureServer(FileSystem fileSystem) {
     // using one created by the community, include it in
     // `lib/src/config/config.dart`.
     await plugins.configureServer(app);
+
+    app.container.registerSingleton(NewsServiceImpl(CategoryQuery(), app.container.make<QueryExecutor>()),
+        as: NewsService);
+    app.mountController<NewsController>();
   };
 }
