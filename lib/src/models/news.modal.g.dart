@@ -112,7 +112,7 @@ class CategoryQuery extends Query<Category, CategoryQueryWhere> {
 
   @override
   get tableName {
-    return 'Category';
+    return '"Category"';
   }
 
   @override

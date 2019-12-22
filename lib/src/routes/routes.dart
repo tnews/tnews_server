@@ -3,6 +3,7 @@ library tnews_server.src.routes;
 import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_static/angel_static.dart';
 import 'package:file/file.dart';
+
 import 'controllers/controllers.dart' as controllers;
 
 /// Put your app routes here!
@@ -16,7 +17,7 @@ AngelConfigurer configureServer(FileSystem fileSystem) {
     await app.configure(controllers.configureServer);
 
     // Render `views/hello.jl` when a user visits the application root.
-    app.get('/', (req, res) => res.render('hello'));
+    app.get('/', (req, res) => res.write('Hello tvc12'));
 
     // app.get('/greetings', (req, res) {
     //   var executor = req.container.make<QueryExecutor>();
