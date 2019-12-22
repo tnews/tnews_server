@@ -14,7 +14,7 @@ class NewsController extends Controller {
     return service.getListNews(searchRequest);
   }
 
-  @Expose('/:id', method: 'GET')
+  @Expose('/getNews/:id', method: 'GET')
   Future<News> getNews(String id) {
     return service.getNews(id);
   }
