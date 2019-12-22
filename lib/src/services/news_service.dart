@@ -6,11 +6,15 @@ import 'package:tnews_server/src/models/news.modal.dart';
 import 'package:tnews_server/src/models/request.modal.dart';
 
 abstract class NewsService extends Service {
-  Future<List<News>> getNews(SearchRequest categoryRequest);
+  Future<List<News>> getListNews(SearchRequest categoryRequest);
 
   Future<List<Category>> getCategories(CategoryRequest request);
 
   Future<List<Language>> getLanguages();
+
+  Future<News> createNews(CreateNewsRequest newsRequest);
+
+  Future<News> getNews(String id);
 }
 
 class NewsServiceImpl extends NewsService {
@@ -37,10 +41,45 @@ class NewsServiceImpl extends NewsService {
   }
 
   @override
-  Future<List<News>> getNews(SearchRequest request) async {
+  Future<List<News>> getListNews(SearchRequest request) async {
     final query = NewsQuery()
       ..limit(request.limit)
       ..offset(request.offset);
     return query.get(executor);
+  }
+
+  @override
+  Future<News> createNews(CreateNewsRequest newsRequest) async {
+//    print(newsRequest);
+    final query = NewsQuery();
+    query.values
+      ..source = newsRequest.source
+      ..langId = 1
+      ..headline = newsRequest.headline
+      ..description = newsRequest.description
+      ..contents = newsRequest.contents
+      ..htmlContent = newsRequest.htmlContent
+      ..url = newsRequest.url
+      ..status = newsRequest.status
+      ..author = newsRequest.author
+      ..authors = newsRequest.authors
+      ..thumbnail = newsRequest.thumbnail
+      ..publishedTime = newsRequest.publishedTime;
+    final news = await query.insert(executor);
+    print(newsRequest);
+    await newsRequest.categoryIds.forEach((id) async {
+      final query = ConnectNewsCategoryQuery();
+      query.values
+        ..newsId = int.parse(news.id)
+        ..categoryId = int.parse(id);
+      await query.insert(executor);
+    });
+    return news;
+  }
+
+  @override
+  Future<News> getNews(String id) {
+    final query = NewsQuery()..where.id.equals(int.parse(id));
+    return query.get(executor).then((_) => _.first);
   }
 }
