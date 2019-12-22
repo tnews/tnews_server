@@ -8,7 +8,7 @@ part of 'request.modal.dart';
 
 @generatedSerializable
 class SearchRequest extends _SearchRequest {
-  SearchRequest({this.offset = 0, this.limit = 10});
+  SearchRequest({this.offset = 0, this.limit = 10, this.categoryId});
 
   @override
   int offset;
@@ -16,22 +16,31 @@ class SearchRequest extends _SearchRequest {
   @override
   int limit;
 
-  SearchRequest copyWith({int offset, int limit}) {
-    return SearchRequest(offset: offset ?? this.offset, limit: limit ?? this.limit);
+  @override
+  String categoryId;
+
+  SearchRequest copyWith({int offset, int limit, String categoryId}) {
+    return SearchRequest(
+        offset: offset ?? this.offset,
+        limit: limit ?? this.limit,
+        categoryId: categoryId ?? this.categoryId);
   }
 
   bool operator ==(other) {
-    return other is _SearchRequest && other.offset == offset && other.limit == limit;
+    return other is _SearchRequest &&
+        other.offset == offset &&
+        other.limit == limit &&
+        other.categoryId == categoryId;
   }
 
   @override
   int get hashCode {
-    return hashObjects([offset, limit]);
+    return hashObjects([offset, limit, categoryId]);
   }
 
   @override
   String toString() {
-    return "SearchRequest(offset=$offset, limit=$limit)";
+    return "SearchRequest(offset=$offset, limit=$limit, categoryId=$categoryId)";
   }
 
   Map<String, dynamic> toJson() {
@@ -41,7 +50,8 @@ class SearchRequest extends _SearchRequest {
 
 @generatedSerializable
 class CategoryRequest extends _CategoryRequest {
-  CategoryRequest({this.offset = 0, this.limit = 10, this.name = ''});
+  CategoryRequest(
+      {this.offset = 0, this.limit = 10, this.categoryId, this.name = ''});
 
   @override
   int offset;
@@ -50,25 +60,36 @@ class CategoryRequest extends _CategoryRequest {
   int limit;
 
   @override
+  String categoryId;
+
+  @override
   String name;
 
-  CategoryRequest copyWith({int offset, int limit, String name}) {
+  CategoryRequest copyWith(
+      {int offset, int limit, String categoryId, String name}) {
     return CategoryRequest(
-        offset: offset ?? this.offset, limit: limit ?? this.limit, name: name ?? this.name);
+        offset: offset ?? this.offset,
+        limit: limit ?? this.limit,
+        categoryId: categoryId ?? this.categoryId,
+        name: name ?? this.name);
   }
 
   bool operator ==(other) {
-    return other is _CategoryRequest && other.offset == offset && other.limit == limit && other.name == name;
+    return other is _CategoryRequest &&
+        other.offset == offset &&
+        other.limit == limit &&
+        other.categoryId == categoryId &&
+        other.name == name;
   }
 
   @override
   int get hashCode {
-    return hashObjects([offset, limit, name]);
+    return hashObjects([offset, limit, categoryId, name]);
   }
 
   @override
   String toString() {
-    return "CategoryRequest(offset=$offset, limit=$limit, name=$name)";
+    return "CategoryRequest(offset=$offset, limit=$limit, categoryId=$categoryId, name=$name)";
   }
 
   Map<String, dynamic> toJson() {
@@ -164,13 +185,16 @@ class CreateNewsRequest extends _CreateNewsRequest {
         other.source == source &&
         other.headline == headline &&
         other.description == description &&
-        ListEquality<String>(DefaultEquality<String>()).equals(other.contents, contents) &&
+        ListEquality<String>(DefaultEquality<String>())
+            .equals(other.contents, contents) &&
         other.htmlContent == htmlContent &&
         other.url == url &&
         other.status == status &&
         other.author == author &&
-        ListEquality<String>(DefaultEquality<String>()).equals(other.authors, authors) &&
-        ListEquality<String>(DefaultEquality<String>()).equals(other.categoryIds, categoryIds) &&
+        ListEquality<String>(DefaultEquality<String>())
+            .equals(other.authors, authors) &&
+        ListEquality<String>(DefaultEquality<String>())
+            .equals(other.categoryIds, categoryIds) &&
         other.thumbnail == thumbnail &&
         other.publishedTime == publishedTime;
   }
@@ -207,7 +231,8 @@ class CreateNewsRequest extends _CreateNewsRequest {
 // SerializerGenerator
 // **************************************************************************
 
-const SearchRequestSerializer searchRequestSerializer = SearchRequestSerializer();
+const SearchRequestSerializer searchRequestSerializer =
+    SearchRequestSerializer();
 
 class SearchRequestEncoder extends Converter<SearchRequest, Map> {
   const SearchRequestEncoder();
@@ -228,31 +253,39 @@ class SearchRequestSerializer extends Codec<SearchRequest, Map> {
 
   @override
   get encoder => const SearchRequestEncoder();
-
   @override
   get decoder => const SearchRequestDecoder();
-
   static SearchRequest fromMap(Map map) {
-    return SearchRequest(offset: map['offset'] as int ?? 0, limit: map['limit'] as int ?? 10);
+    return SearchRequest(
+        offset: map['offset'] as int ?? 0,
+        limit: map['limit'] as int ?? 10,
+        categoryId: map['category_id'] as String);
   }
 
   static Map<String, dynamic> toMap(_SearchRequest model) {
     if (model == null) {
       return null;
     }
-    return {'offset': model.offset, 'limit': model.limit};
+    return {
+      'offset': model.offset,
+      'limit': model.limit,
+      'category_id': model.categoryId
+    };
   }
 }
 
 abstract class SearchRequestFields {
-  static const List<String> allFields = <String>[offset, limit];
+  static const List<String> allFields = <String>[offset, limit, categoryId];
 
   static const String offset = 'offset';
 
   static const String limit = 'limit';
+
+  static const String categoryId = 'category_id';
 }
 
-const CategoryRequestSerializer categoryRequestSerializer = CategoryRequestSerializer();
+const CategoryRequestSerializer categoryRequestSerializer =
+    CategoryRequestSerializer();
 
 class CategoryRequestEncoder extends Converter<CategoryRequest, Map> {
   const CategoryRequestEncoder();
@@ -273,14 +306,13 @@ class CategoryRequestSerializer extends Codec<CategoryRequest, Map> {
 
   @override
   get encoder => const CategoryRequestEncoder();
-
   @override
   get decoder => const CategoryRequestDecoder();
-
   static CategoryRequest fromMap(Map map) {
     return CategoryRequest(
         offset: map['offset'] as int ?? 0,
         limit: map['limit'] as int ?? 10,
+        categoryId: map['category_id'] as String,
         name: map['name'] as String ?? '');
   }
 
@@ -288,34 +320,49 @@ class CategoryRequestSerializer extends Codec<CategoryRequest, Map> {
     if (model == null) {
       return null;
     }
-    return {'offset': model.offset, 'limit': model.limit, 'name': model.name};
+    return {
+      'offset': model.offset,
+      'limit': model.limit,
+      'category_id': model.categoryId,
+      'name': model.name
+    };
   }
 }
 
 abstract class CategoryRequestFields {
-  static const List<String> allFields = <String>[offset, limit, name];
+  static const List<String> allFields = <String>[
+    offset,
+    limit,
+    categoryId,
+    name
+  ];
 
   static const String offset = 'offset';
 
   static const String limit = 'limit';
 
+  static const String categoryId = 'category_id';
+
   static const String name = 'name';
 }
 
-const CreateNewsRequestSerializer createNewsRequestSerializer = CreateNewsRequestSerializer();
+const CreateNewsRequestSerializer createNewsRequestSerializer =
+    CreateNewsRequestSerializer();
 
 class CreateNewsRequestEncoder extends Converter<CreateNewsRequest, Map> {
   const CreateNewsRequestEncoder();
 
   @override
-  Map convert(CreateNewsRequest model) => CreateNewsRequestSerializer.toMap(model);
+  Map convert(CreateNewsRequest model) =>
+      CreateNewsRequestSerializer.toMap(model);
 }
 
 class CreateNewsRequestDecoder extends Converter<Map, CreateNewsRequest> {
   const CreateNewsRequestDecoder();
 
   @override
-  CreateNewsRequest convert(Map map) => CreateNewsRequestSerializer.fromMap(map);
+  CreateNewsRequest convert(Map map) =>
+      CreateNewsRequestSerializer.fromMap(map);
 }
 
 class CreateNewsRequestSerializer extends Codec<CreateNewsRequest, Map> {
@@ -323,25 +370,28 @@ class CreateNewsRequestSerializer extends Codec<CreateNewsRequest, Map> {
 
   @override
   get encoder => const CreateNewsRequestEncoder();
-
   @override
   get decoder => const CreateNewsRequestDecoder();
-
   static CreateNewsRequest fromMap(Map map) {
     return CreateNewsRequest(
         source: map['source'] as String,
         headline: map['headline'] as String,
         description: map['description'] as String,
-        contents: map['contents'] != null ? map['contents'].cast<String>().toList() : null,
+        contents: map['contents'] is Iterable
+            ? (map['contents'] as Iterable).cast<String>().toList()
+            : null,
         htmlContent: map['html_content'] as String,
         url: map['url'] as String,
-        status: int.tryParse(map['status'] ?? '0') ?? 0,
+        status: map['status'] as int,
         author: map['author'] as String,
-        authors: map['authors'] != null ? map['authors'].cast<String>().toList() : null,
-        categoryIds:
-            map['category_ids'] != null ? map['category_ids'].cast<String>().toList() : null,
+        authors: map['authors'] is Iterable
+            ? (map['authors'] as Iterable).cast<String>().toList()
+            : null,
+        categoryIds: map['category_ids'] is Iterable
+            ? (map['category_ids'] as Iterable).cast<String>().toList()
+            : null,
         thumbnail: map['thumbnail'] as String,
-        publishedTime: int.tryParse(map['published_time'] ?? '0')) ?? DateTime.now().millisecondsSinceEpoch;
+        publishedTime: map['published_time'] as int);
   }
 
   static Map<String, dynamic> toMap(_CreateNewsRequest model) {

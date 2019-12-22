@@ -8,6 +8,7 @@ abstract class _SearchRequest {
   int offset;
   @SerializableField(defaultValue: 10)
   int limit;
+  String categoryId;
 }
 
 @Serializable()

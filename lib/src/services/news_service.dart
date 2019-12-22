@@ -42,10 +42,20 @@ class NewsServiceImpl extends NewsService {
 
   @override
   Future<List<News>> getListNews(SearchRequest request) async {
-    final query = NewsQuery()
-      ..limit(request.limit)
-      ..offset(request.offset);
-    return query.get(executor);
+    if (request.categoryId != null) {
+      final query = NewsQuery();
+      final List<News> news = await query.get(executor);
+      return news
+          .where((item) => item.categories?.isNotEmpty)
+          .where((item) =>
+              item.categories.where((category) => category.id == request.categoryId)?.isNotEmpty == true)
+          .toList();
+    } else {
+      final query = NewsQuery()
+        ..limit(request.limit)
+        ..offset(request.offset);
+      return query.get(executor);
+    }
   }
 
   @override
