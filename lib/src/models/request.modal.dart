@@ -3,6 +3,7 @@ import 'package:angel_serialize/angel_serialize.dart';
 
 part 'request.modal.g.dart';
 
+@Serializable()
 abstract class _SearchRequest {
   @SerializableField(defaultValue: 0)
   int offset;

@@ -1,5 +1,4 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: always_declare_return_types, cascade_invocations, prefer_single_quotes, avoid_single_cascade_in_expression_statements
 
 part of 'news.modal.dart';
 
@@ -206,10 +205,10 @@ class ConnectNewsCategoryQuery
     trampoline ??= Set();
     trampoline.add(tableName);
     _where = ConnectNewsCategoryQueryWhere(this);
-    leftJoin('Category', 'category_id', 'id',
+    leftJoin('"Category"', 'category_id', 'id',
         additionalFields: const ['id', 'created_at', 'updated_at', 'name'],
         trampoline: trampoline);
-    leftJoin('News', 'news_id', 'id',
+    leftJoin('"News"', 'news_id', 'id',
         additionalFields: const [
           'id',
           'created_at',
@@ -244,7 +243,7 @@ class ConnectNewsCategoryQuery
 
   @override
   get tableName {
-    return 'News_Category';
+    return '"News_Category"';
   }
 
   @override
@@ -435,7 +434,7 @@ class NewsQuery extends Query<News, NewsQueryWhere> {
     trampoline ??= Set();
     trampoline.add(tableName);
     _where = NewsQueryWhere(this);
-    leftJoin('Language', 'lang_id', 'id',
+    leftJoin('"Language"', 'lang_id', 'id',
         additionalFields: const ['id', 'created_at', 'updated_at', 'name'],
         trampoline: trampoline);
     leftJoin(ConnectNewsCategoryQuery(trampoline: trampoline), 'id', 'news_id',
@@ -455,7 +454,7 @@ class NewsQuery extends Query<News, NewsQueryWhere> {
 
   @override
   get tableName {
-    return 'News';
+    return '"News"';
   }
 
   @override
@@ -528,8 +527,8 @@ class NewsQuery extends Query<News, NewsQueryWhere> {
 
   @override
   bool canCompile(trampoline) {
-    return (!(trampoline.contains('News') &&
-        trampoline.contains('News_Category')));
+    return (!(trampoline.contains('"News"') &&
+        trampoline.contains('"News_Category"')));
   }
 
   @override

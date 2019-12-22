@@ -6,7 +6,7 @@ import 'package:tnews_server/src/models/news.modal.dart';
 import 'package:tnews_server/src/models/request.modal.dart';
 
 abstract class NewsService extends Service {
-  Future<List<News>> getNews();
+  Future<List<News>> getNews(SearchRequest categoryRequest);
 
   Future<List<Category>> getCategories(CategoryRequest request);
 
@@ -37,7 +37,10 @@ class NewsServiceImpl extends NewsService {
   }
 
   @override
-  Future<List<News>> getNews() async {
-    return [];
+  Future<List<News>> getNews(SearchRequest request) async {
+    final query = NewsQuery()
+      ..limit(request.limit)
+      ..offset(request.offset);
+    return query.get(executor);
   }
 }
