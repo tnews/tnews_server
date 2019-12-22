@@ -7,6 +7,42 @@ part of 'request.modal.dart';
 // **************************************************************************
 
 @generatedSerializable
+class SearchRequest extends _SearchRequest {
+  SearchRequest({this.offset = 0, this.limit = 10});
+
+  @override
+  int offset;
+
+  @override
+  int limit;
+
+  SearchRequest copyWith({int offset, int limit}) {
+    return SearchRequest(
+        offset: offset ?? this.offset, limit: limit ?? this.limit);
+  }
+
+  bool operator ==(other) {
+    return other is _SearchRequest &&
+        other.offset == offset &&
+        other.limit == limit;
+  }
+
+  @override
+  int get hashCode {
+    return hashObjects([offset, limit]);
+  }
+
+  @override
+  String toString() {
+    return "SearchRequest(offset=$offset, limit=$limit)";
+  }
+
+  Map<String, dynamic> toJson() {
+    return SearchRequestSerializer.toMap(this);
+  }
+}
+
+@generatedSerializable
 class CategoryRequest extends _CategoryRequest {
   CategoryRequest({this.offset = 0, this.limit = 10, this.name = ''});
 
@@ -51,6 +87,51 @@ class CategoryRequest extends _CategoryRequest {
 // **************************************************************************
 // SerializerGenerator
 // **************************************************************************
+
+const SearchRequestSerializer searchRequestSerializer =
+    SearchRequestSerializer();
+
+class SearchRequestEncoder extends Converter<SearchRequest, Map> {
+  const SearchRequestEncoder();
+
+  @override
+  Map convert(SearchRequest model) => SearchRequestSerializer.toMap(model);
+}
+
+class SearchRequestDecoder extends Converter<Map, SearchRequest> {
+  const SearchRequestDecoder();
+
+  @override
+  SearchRequest convert(Map map) => SearchRequestSerializer.fromMap(map);
+}
+
+class SearchRequestSerializer extends Codec<SearchRequest, Map> {
+  const SearchRequestSerializer();
+
+  @override
+  get encoder => const SearchRequestEncoder();
+  @override
+  get decoder => const SearchRequestDecoder();
+  static SearchRequest fromMap(Map map) {
+    return SearchRequest(
+        offset: map['offset'] as int ?? 0, limit: map['limit'] as int ?? 10);
+  }
+
+  static Map<String, dynamic> toMap(_SearchRequest model) {
+    if (model == null) {
+      return null;
+    }
+    return {'offset': model.offset, 'limit': model.limit};
+  }
+}
+
+abstract class SearchRequestFields {
+  static const List<String> allFields = <String>[offset, limit];
+
+  static const String offset = 'offset';
+
+  static const String limit = 'limit';
+}
 
 const CategoryRequestSerializer categoryRequestSerializer =
     CategoryRequestSerializer();

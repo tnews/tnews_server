@@ -9,15 +9,29 @@ class NewsController extends Controller {
 
   NewsController(this.service);
 
-  @Expose('/', method: 'GET')
-  Future<List<News>> getNews() {
-    return service.getNews();
+  @Expose('/', method: 'GET', middleware: [parseSearchRequest])
+  Future<List<News>> getNews(SearchRequest searchRequest) {
+    return service.getNews(searchRequest);
   }
 
   @Expose('/category', method: 'GET', middleware: [parseCategoryRequest])
   Future<List<Category>> getCategories(CategoryRequest categoryRequest) async {
     return service.getCategories(categoryRequest);
   }
+
+  @Expose('/language', method: 'GET')
+  Future<List<Language>> getLanguage() {
+    return service.getLanguages();
+  }
+}
+
+Future<bool> parseSearchRequest(RequestContext req, res) async {
+  req.queryParameters['offset'] = int.tryParse(req.queryParameters['offset'] ?? '0');
+  req.queryParameters['limit'] = int.tryParse(req.queryParameters['limit'] ?? '10');
+
+  final searchRequest = SearchRequestDecoder().convert(req.queryParameters);
+  req.params['searchRequest'] = searchRequest;
+  return true;
 }
 
 Future<bool> parseCategoryRequest(RequestContext req, res) async {
