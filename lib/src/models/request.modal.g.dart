@@ -335,13 +335,13 @@ class CreateNewsRequestSerializer extends Codec<CreateNewsRequest, Map> {
         contents: map['contents'] != null ? json.decode(map['contents']).cast<String>().toList() : null,
         htmlContent: map['html_content'] as String,
         url: map['url'] as String,
-        status: int.tryParse(map['status'] ?? '0'),
+        status: int.tryParse(map['status']?.toString() ?? '0'),
         author: map['author'] as String,
         authors: map['authors'] != null ? json.decode(map['authors']).cast<String>().toList() : null,
         categoryIds:
             map['category_ids'] != null ? json.decode(map['category_ids']).cast<String>().toList() : null,
         thumbnail: map['thumbnail'] as String,
-        publishedTime: int.tryParse(map['published_time'] ?? 0));
+        publishedTime: int.tryParse(map['published_time']?.toString() ?? 0));
   }
 
   static Map<String, dynamic> toMap(_CreateNewsRequest model) {
