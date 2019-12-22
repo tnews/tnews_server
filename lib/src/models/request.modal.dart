@@ -1,4 +1,3 @@
-import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_serialize/angel_serialize.dart';
 
 part 'request.modal.g.dart';
@@ -15,4 +14,20 @@ abstract class _SearchRequest {
 class _CategoryRequest extends _SearchRequest {
   @SerializableField(defaultValue: '')
   String name;
+}
+
+@Serializable()
+class _CreateNewsRequest {
+  String source;
+  String headline;
+  String description;
+  List<String> contents;
+  String htmlContent;
+  String url;
+  int status;
+  String author;
+  List<String> authors;
+  List<String> categoryIds;
+  String thumbnail;
+  int publishedTime;
 }

@@ -499,12 +499,12 @@ class NewsQuery extends Query<News, NewsQueryWhere> {
         originId: (row[5] as String),
         headline: (row[6] as String),
         description: (row[7] as String),
-        contents: (row[8] as List<String>),
+        contents: (row[8]?.cast<String>() ?? []),
         htmlContent: (row[9] as String),
         url: (row[10] as String),
         status: (row[11] as int),
         author: (row[12] as String),
-        authors: (row[13] as List<String>),
+        authors: (row[13]?.cast<String>() ?? []),
         thumbnail: (row[14] as String),
         publishedTime: (row[15] as int));
     if (row.length > 16) {
