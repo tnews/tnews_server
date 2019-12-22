@@ -332,16 +332,16 @@ class CreateNewsRequestSerializer extends Codec<CreateNewsRequest, Map> {
         source: map['source'] as String,
         headline: map['headline'] as String,
         description: map['description'] as String,
-        contents: map['contents'] != null ? json.decode(map['contents']).cast<String>().toList() : null,
+        contents: map['contents'] != null ? map['contents'].cast<String>().toList() : null,
         htmlContent: map['html_content'] as String,
         url: map['url'] as String,
-        status: int.tryParse(map['status'] ?? '0'),
+        status: int.tryParse(map['status'] ?? '0') ?? 0,
         author: map['author'] as String,
-        authors: map['authors'] != null ? json.decode(map['authors']).cast<String>().toList() : null,
+        authors: map['authors'] != null ? map['authors'].cast<String>().toList() : null,
         categoryIds:
-            map['category_ids'] != null ? json.decode(map['category_ids']).cast<String>().toList() : null,
+            map['category_ids'] != null ? map['category_ids'].cast<String>().toList() : null,
         thumbnail: map['thumbnail'] as String,
-        publishedTime: int.tryParse(map['published_time'] ?? '0'));
+        publishedTime: int.tryParse(map['published_time'] ?? '0')) ?? DateTime.now().millisecondsSinceEpoch;
   }
 
   static Map<String, dynamic> toMap(_CreateNewsRequest model) {
