@@ -342,7 +342,7 @@ class LanguageQuery extends Query<Language, LanguageQueryWhere> {
 
   @override
   get tableName {
-    return 'Language';
+    return '"Language"';
   }
 
   @override

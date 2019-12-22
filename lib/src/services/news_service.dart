@@ -23,14 +23,17 @@ class NewsServiceImpl extends NewsService {
   Future<List<Category>> getCategories(CategoryRequest request) {
     final query = CategoryQuery()
       ..offset(request.offset)
-      ..limit(request.limit)
-      ..where.name.equals(request.name);
+      ..limit(request.limit);
+    if (request.name != '') {
+      query.where.name.equals(request.name);
+    }
     return query.get(executor);
   }
 
   @override
   Future<List<Language>> getLanguages() async {
-    return [Language(id: '123', name: 'Tiếng việt')];
+    final query = LanguageQuery();
+    return query.get(executor);
   }
 
   @override

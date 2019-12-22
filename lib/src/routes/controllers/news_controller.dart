@@ -18,6 +18,11 @@ class NewsController extends Controller {
   Future<List<Category>> getCategories(CategoryRequest categoryRequest) async {
     return service.getCategories(categoryRequest);
   }
+
+  @Expose('/language', method: 'GET')
+  Future<List<Language>> getLanguage() {
+    return service.getLanguages();
+  }
 }
 
 Future<bool> parseCategoryRequest(RequestContext req, res) async {
